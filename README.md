@@ -1,4 +1,4 @@
-# TP integrador Java UTN
+# TP Integrador Java UTN
 
 Grupo 4-L
 - Daniel Moreno
