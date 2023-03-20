@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         String rutaPronostico = "./recursos/pronostico.csv";
         String rutaResultados = "./recursos/resultados.csv";
