@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String rutaPronostico = "./recursos/pronostico.csv";
         String rutaResultados = "./recursos/resultados.csv";
-        ArrayList<Partido> partidos = new ArrayList<Partido>();
-        Ronda ronda = new Ronda(partidos);
+        ArrayList<Pronostico> pronosticos = new ArrayList<>();
+        Ronda ronda = new Ronda("1");
         leerResultados(rutaResultados, ronda);
-        leerPronostico(rutaPronostico, ronda);
+        leerPronostico(rutaPronostico, ronda, pronosticos);
     }
 
     // Función para leer los resultados
@@ -34,8 +34,9 @@ public class Main {
     }
 
     // Función para leer el pronóstico
-    private static void leerPronostico(String rutaPronostico, Ronda ronda) throws IOException {
+    private static void leerPronostico(String rutaPronostico, Ronda ronda, ArrayList<Pronostico> pronosticos) throws IOException {
         try {
+            Integer puntaje = 0;
             Path pathPronostico = Paths.get(rutaPronostico);
             for (String line: Files.readAllLines(pathPronostico)) {
                 int i = 0;
@@ -45,22 +46,40 @@ public class Main {
                 String gana1 = datos[1];
                 String empata = datos[2];
                 String gana2 = datos[3];
+                Pronostico pronostico = new Pronostico();
 
                 boolean[] ganador = {false, false, false};
 
                 if (gana1.equals("X")) {
                     ganador[0] = true;
-                    Pronostico pronostico = new Pronostico(ronda.getPartidos().get(i), equipo1, ResultadoEnum.Ganador);
+                     pronostico = new Pronostico(ronda.getPartidos().get(i), equipo1, ResultadoEnum.Ganador);
                 } else if (empata.equals("X")) {
                     ganador[1] = true;
-                    Pronostico pronostico = new Pronostico(ronda.getPartidos().get(i), null, ResultadoEnum.Empate);
+                     pronostico = new Pronostico(ronda.getPartidos().get(i), equipo1, ResultadoEnum.Empate);
                 } else if (gana2.equals("X")) {
                     ganador[2] = true;
-                    Pronostico pronostico = new Pronostico(ronda.getPartidos().get(i), equipo2, ResultadoEnum.Ganador);
+                     pronostico = new Pronostico(ronda.getPartidos().get(i), equipo2, ResultadoEnum.Ganador);
                 }
+
+                pronosticos.add(pronostico);
+
             }
+
+            for(int i = 0; i<pronosticos.size(); ++i){
+
+                if(pronosticos.get(i).getResultado().equals(ronda.getPartidos().get(i).resultado(pronosticos.get(i).getEquipo()))){
+                    puntaje++;
+                }
+
+            }
+
+            System.out.printf("Puntaje = %d", puntaje);
+
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el archivo");
         }
     }
+
+
+
 }

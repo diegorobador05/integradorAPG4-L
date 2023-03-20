@@ -18,6 +18,9 @@ public class Pronostico {
         this.resultado = resultado;
     }
 
+    public Pronostico() {
+    }
+
     //Getters & Setters
     public Partido getPartido() {
             return partido;

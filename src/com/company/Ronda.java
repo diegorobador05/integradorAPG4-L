@@ -7,7 +7,7 @@ import java.util.Map;
 public class Ronda {
     // Atributos
     private String numero;
-    private ArrayList<Partido> partidos;
+    private ArrayList<Partido> partidos = new ArrayList<>();
 
     // Constructor
     public Ronda(String numero, ArrayList<Partido> partidos) {
@@ -15,8 +15,8 @@ public class Ronda {
         this.partidos = partidos;
     }
 
-    public Ronda(ArrayList<Partido> partidos) {
-        this.partidos = partidos;
+    public Ronda(String numero) {
+        this.numero = numero;
     }
 
     // Getters & Setters, Métodos
