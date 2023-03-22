@@ -49,16 +49,12 @@ public class Main {
                 String gana2 = datos[3];
                 Pronostico pronostico = new Pronostico();
 
-                boolean[] ganador = {false, false, false};
 
                 if (gana1.equals("X")) {
-                    ganador[0] = true;
                      pronostico = new Pronostico(ronda.getPartidos().get(i), equipo1, ResultadoEnum.Ganador);
                 } else if (empata.equals("X")) {
-                    ganador[1] = true;
                      pronostico = new Pronostico(ronda.getPartidos().get(i), equipo1, ResultadoEnum.Empate);
                 } else if (gana2.equals("X")) {
-                    ganador[2] = true;
                      pronostico = new Pronostico(ronda.getPartidos().get(i), equipo2, ResultadoEnum.Ganador);
                 }
 
