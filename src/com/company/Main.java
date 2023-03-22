@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String rutaPronostico = "./recursos/pronostico.csv";
-        String rutaResultados = "./recursos/resultados.csv";
+        String rutaPronostico = args[0];
+        String rutaResultados = args[1];
         ArrayList<Pronostico> pronosticos = new ArrayList<>();
         Ronda ronda = new Ronda("1");
         leerResultados(rutaResultados, ronda);
